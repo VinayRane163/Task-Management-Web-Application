@@ -1,0 +1,38 @@
+﻿@model TMS.Controllers.edit_task
+
+@{
+    ViewBag.Title = "Edit Task";
+}
+
+<body>
+    @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.taskid)
+        @Html.HiddenFor(model => model.taskperson)
+
+        <div class="form-group">
+            <label for="TaskName">Task Name:</label>
+            @Html.TextBoxFor(model => model.taskname, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            <label for="TaskDate">Task Date:</label>
+            @Html.TextBoxFor(model => model.taskdate, new { @class = "form-control", required = "required", type = "date" })
+        </div>
+
+        <div class="form-group">
+            <label for="TaskDetails">Task Details:</label>
+            @Html.TextBoxFor(model => model.taskdetails, new { @class = "form-control", required = "required" })
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-dark form-control">Update Task</button>
+    }
+
+    @if (ViewBag.Message != null)
+    {
+        <script>
+            alert('@ViewBag.Message');
+        </script>
+    }
+</body>

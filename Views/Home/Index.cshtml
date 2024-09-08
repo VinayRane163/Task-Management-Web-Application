@@ -1,0 +1,41 @@
+﻿@model List<TMS.Controllers.taskdata>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@Html.ActionLink("Add Task ", "TaskAdd", "Home", null, new { @class = "btn btn-dark border form-control" })
+<br /><br />
+
+<div class="container">
+    <div class="row">
+        @foreach (var m in Model)
+        {
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                         <h5 class="card-title">Task : @m.taskname</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">End-Date : @m.taskdate</h6>
+                        <p class="card-text">Descriptions : @m.taskdetails</p>
+                        <div class="d-flex justify-content-between">
+                            @Html.ActionLink("Edit task", "edit", "home", new { task = m.taskid, User = m.taskperson }, new { @class = "btn btn-primary" })
+                            @using (Html.BeginForm("done", "Home", FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                @Html.Hidden("task", m.taskid)
+                                @Html.Hidden("User", m.taskperson)
+                                <button type="submit" class="btn btn-success" value="delete"> Done</button>
+                            }
+
+                            @using (Html.BeginForm("delete", "Home", FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                @Html.Hidden("task", m.taskid) 
+                                @Html.Hidden("User", m.taskperson) 
+                                <button type="submit" class="btn btn-danger" value="delete">Delete</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

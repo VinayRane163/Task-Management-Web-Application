@@ -1,0 +1,26 @@
+﻿@model TMS.Controllers.addtaskdata
+<body>
+    @using (Html.BeginForm("TaskAdd", "Home", FormMethod.Post))
+    {
+    <label class="form-group">Task Name :</label>
+    @Html.TextBoxFor(model=> model.taskname,null,new{@class="form-control",required="required"})
+    <br />
+
+    <label class="form-group">Task date :</label>
+    @Html.TextBoxFor(model=> model.taskdate,null,new{@class="form-control",required="required", type="date"})
+    <br />
+
+    <label class="form-group">Task Details :</label>
+    @Html.TextBoxFor(model=> model.taskdetails,null,new{@class="form-control",required="required"})
+    <br />
+
+        <button type="submit" class="btn btn-dark form-control ">Add task + </button>
+
+}
+@if(ViewBag.Message!=null)
+    {
+        <script>
+            alert(' @ViewBag.Message');           
+        </script>
+    }
+</body>
